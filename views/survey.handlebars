@@ -1,0 +1,39 @@
+<h2>Survey Questions</h2>
+<h3>(1) Disagree a lot | (2) Disagree a little | (3) Neutral | (4) Agree a little | (5) Agree a lot</h3>
+
+<ol>
+{{#each questions }}
+  <li>
+  	<p>{{q}}</p>
+  	<p>
+	  	<select id='question{{id}}'>
+	  		<option>1</option>
+	  		<option>2</option>
+	  		<option>3</option>
+	  		<option>4</option>
+	  		<option>5</option>
+	  	</select>
+  	</p>
+  </li>
+{{/each}}
+</ol>
+
+<button type="submit" id="submit">Submit</button>
+
+<script type="text/javascript">
+	$('#submit').on('click', function(){
+		event.preventDefault();
+		var answerArray = [];
+		for (var i = 0; i < 10; i++) {
+			var answer = $("#question" + i).val();
+			answerArray.push(answer);
+		}
+		$.post('/survey', {answers: answerArray}).done(function(data){
+			if(data){
+				alert('Your answers went through!');
+			} else{
+				alert('Something went wrong... sorry about that!')
+			}
+		})
+	})
+</script>
