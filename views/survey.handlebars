@@ -28,9 +28,10 @@
 			var answer = $("#question" + i).val();
 			answerArray.push(answer);
 		}
-		$.post('/survey', {answers: answerArray}).done(function(data){
+		$.post('/', {answers: answerArray}).done(function(data){
 			if(data){
 				alert('Your answers went through!');
+				window.location = '/home';
 			} else{
 				alert('Something went wrong... sorry about that!')
 			}

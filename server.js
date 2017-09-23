@@ -51,7 +51,7 @@ function compareProfiles(req){
 			return total + num;
 		});
 	}
-	app.get('/', function(request, response){
+	app.get('/home', function(request, response){
 		response.render('home', {friends: profileArray.sort(function(a, b){
 			return a.sum - b.sum;
 		})});
@@ -62,11 +62,11 @@ createProfile('Genevieve', [2,5,3,5,4,1,2,4,5,3]);
 
 createProfile('Robert', [3,4,1,2,5,4,2,3,4,1]);
 
-app.get('/survey', function(request, response){
+app.get('/', function(request, response){
 	response.render('survey', {questions: profileQuestions});
 })
 
-app.post('/survey', function (request, response) {
+app.post('/', function (request, response) {
 	compareProfiles(request.body)
 	response.send(true);
 })
