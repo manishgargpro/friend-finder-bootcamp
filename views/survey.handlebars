@@ -31,7 +31,6 @@
 		$.post('/', {answers: answerArray}).done(function(data){
 			if(data){
 				alert('Your answers went through!');
-				window.location = '/home';
 			} else{
 				alert('Something went wrong... sorry about that!')
 			}
